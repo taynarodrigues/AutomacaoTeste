@@ -12,7 +12,7 @@ public class LoginPage {
 			this.navegador = navegador;
 		}
 		
-		public LoginFormPage clickSignIn() {
+		public LoginFormPage clicarSignIn() {
 			navegador.findElement(By.linkText("Sign in")).click();
 			
 			return new LoginFormPage(navegador);

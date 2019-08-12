@@ -11,10 +11,26 @@ public class LoginFormPage {
 			this.navegador = navegador;
 		}
 		
-		public LoginFormPage typeLogin(String login) {
+		public LoginFormPage digitarLogin(String login) {
 			navegador.findElement(By.id("signinbox")).findElement(By.name("login")).sendKeys(login);
 			return this;
 		}
-	
+		
+		public LoginFormPage digitarSenha(String password) {
+			navegador.findElement(By.id("signibox")).findElement(By.name("password")).sendKeys(password);
+			return this;
+		}
+		
+		public SecretaPage clicarSignIn(){
+			navegador.findElement(By.linkText("SIGN IN")).click();
+			return new SecretaPage(navegador);
+		}
+		
+		public SecretaPage fazerLogin(String login, String senha) {
+			digitarLogin(login);
+			digitarSenha(senha);
+			clicarSignIn();
+			return new SecretaPage(navegador);
+		}
 
 }
