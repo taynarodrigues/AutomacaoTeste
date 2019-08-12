@@ -11,7 +11,7 @@ public class SecretaPage extends BasePage {
 		
 	}
 
-	public MePage clicarMe() {
+	public MePage clicarSignIn() {
 		navegador.findElement(By.className("me")).click();
 		
 		return new MePage(navegador);

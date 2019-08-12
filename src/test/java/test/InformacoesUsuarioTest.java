@@ -82,7 +82,7 @@ public class InformacoesUsuarioTest {
 		// Clicar no link de text "SAVE" que está na popup
 		popupAddMoreData.findElement(By.linkText("SAVE")).click();
 
-		// Na mensagem de id "toast-container" validar que o texto é "Your contact has bee added!"
+		// Na mensagem de id "toast-container" validar que o texto é "Your contact has been added!"
 		WebElement mensagemPop = navegador.findElement(By.id("toast-container"));
 		String mensagem = mensagemPop.getText();
 		assertEquals(mensagemEsperada, mensagem);
