@@ -3,12 +3,12 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LoginFormPage {
+public class LoginFormPage extends BasePage {
 	
-		private WebDriver navegador;
+		
 		
 		public LoginFormPage(WebDriver navegador) {
-			this.navegador = navegador;
+			super(navegador);
 		}
 		
 		public LoginFormPage digitarLogin(String login) {

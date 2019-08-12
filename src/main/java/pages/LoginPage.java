@@ -3,15 +3,16 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LoginPage {
+public class LoginPage extends BasePage {
 
 		
-		private WebDriver navegador;
+		
 		
 		public LoginPage(WebDriver navegador) {
-			this.navegador = navegador;
-		}
+		super(navegador);
 		
+	}
+
 		public LoginFormPage clicarSignIn() {
 			navegador.findElement(By.linkText("Sign in")).click();
 			
