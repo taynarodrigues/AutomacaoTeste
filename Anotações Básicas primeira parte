@@ -1,0 +1,115 @@
+Introdução ao Selenium WebDriver - Apêndice
+O site do projeto Selenium possui uma série de informações relevantes. Elas estão relacionadas a todos os projetos, isso inclui: Selenium IDE, Selenium WebDriver e Selenium Grid. O site também conta com documentações, dicas e links importantes. O acesso ao site do projeto Selenium é feito através da seguinte URL: http://www.seleniumhq.org/.
+
+Selenium IDE, como vimos no vídeo, é um plugin que pode ser instalado no Firefox e que serve para criação, gravação e execução de testes em “selenês”, nome dado à forma de escrita e gravação dos scripts. Não iremos aprender a trabalhar com ele, uma vez que o treinamento é voltado à escrita de scripts em Java e não a gravação em selenês. Veja na URL abaixo um pouco mais sobre o Selenium IDE:
+
+http://www.seleniumhq.org/projects/ide/
+
+O Selenium WebDriver superou alguns problemas do Selenium Remote Control, como por exemplo, o Single Role Origin Policy (a obrigatoriedade de que o acesso a uma página seja feita apenas por uma página de mesmo domínio, porta e protocolo). Ele também permitiu a possibilidade de execução dos scripts local e/ou remotamente. WebDriver também é o nome da Interface implementada pelas classes que representam os browsers, por exemplo: FirefoxDriver, ChromeDriver, InternetExplorerDriver, etc.
+
+Há pouquíssimas diferenças entre a forma de utilização do Selenium WebDriver em Java comparado a outras linguagens de programação. Vejamos um exemplo de Java comparado a Ruby:
+
+Exemplo de código em Java
+
+WebDriver driver = new ChromeDriver();
+driver.get("http://www.google.com");
+WebElement element = driver.findElement(By.name("q"));
+element.sendKeys("Cheese!");
+element.submit();
+Exemplo de código em Ruby
+
+driver = Selenium::WebDriver.for :chrome
+driver.get "http://google.com"
+element = driver.find_element :name => "q"
+element.send_keys "Cheese!"
+element.submit
+Isso ocorre porque há um padrão já estabelecido pela W3C que descreve como o Selenium WebDriver deve ser implementado em cada linguagem de programação. Você pode acessar esse padrão através da URL abaixo:
+
+https://www.w3.org/TR/webdriver/
+
+Quer colaborar? Abaixo está a URL de acesso ao projeto no Github:
+
+https://github.com/SeleniumHQ/selenium
+
+Downloads e dependências - Apêndice
+Java JDK Link 
+
+http://www.oracle.com/technetwork/pt/java/javase/downloads/jdk8-downloads-2133151.html
+
+IntelliJ IDEA 
+
+https://www.jetbrains.com/idea/download/#section=mac
+
+JUnit 
+
+https://mvnrepository.com/artifact/junit/junit/4.12
+
+Selenium WebDriver 
+
+https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java/3.6.0
+
+ChromeDriver 
+
+https://sites.google.com/a/chromium.org/chromedriver/downloads
+
+Extras
+
+Outros Drivers 
+
+https://github.com/mozilla/geckodriver/releases (Firefox) 
+
+http://selenium-release.storage.googleapis.com/index.html?path=3.6 (Internet Explorer) 
+
+Cucumber-JVM 
+
+https://cucumber.io/docs/reference/jvm
+
+Criando o projeto e abrindo o navegador - Apêndice
+Neste teste vimos que é necessário ter métodos anotados com @Test para que sejam interpretados como um teste válido ao clicar em "executar". A forma de nomear métodos é sempre tema de perguntas, por isso, separei um post que possui 7 recomendações diferentes de como nomear seus testes, veja no link abaixo:
+
+https://vitalflux.com/7-popular-unit-test-naming-conventions/
+
+Também vimos que é possível utilizar métodos da classe Assert do JUnit para validar valores obtidos durante os testes, dentre as asserções mais comuns estão:
+
+assertEquals(String valorEsperado, String valorAtual, String mensagemErro) 
+
+Validar se o valorAtual é igual ao valorEsperado, caso não sejam, a mensagermErro é apresentada.
+
+assertTrue(boolean condicaoAtual, String mensagemErro) 
+
+Validar se a condicaoAtual é verdadeira, caso não seja, a mensagermErro é apresentada.
+
+Quer conhecer todas as asserções da classe Assert? Visite a URL abaixo:
+
+http://junit.sourceforge.net/javadoc/org/junit/Assert.html
+
+Seu navegador não abriu uma janela maximizada?
+
+Sem problemas, para maximizar, use o comando a seguir logo abaixo da instanciação da classe ChromeDriver:
+
+navegador.manage().window().maximize(); 
+
+Ou, se está num MAC OS X, como eu, use o comando abaixo:
+
+navegador.manage().window().setSize(new Dimension(1280, 800)); 
+
+Lembrando que o primeiro parâmetro (1280) representa a largura e o segundo (800) representa a altura da janela do navegador.
+
+Identificando elementos e programando um script de teste​ - Apêndice
+ATENÇÃO: Vídeo do meu canal do Youtube sobre identificação de elementos:
+
+https://www.youtube.com/watch?v=DhpQIk3Apvo
+
+Para acelerar o desenvolvimento dos seus scripts, nada melhor que conversar com os desenvolvedores da aplicação que você irá testar, ou mesmo, você mesmo colocar a mão no código e tentar identificar como a aplicação foi construída e quais são suas principais características.
+
+Caso você não conheça muito sobre HTML e seus elementos, segue abaixo dois links que poderão lhe ajudar bastante:
+
+Elementos mais comuns no HTML 
+
+https://www.w3schools.com/html/html_elements.asp
+
+Atributos constantemente usados em elementos
+
+https://www.w3schools.com/html/html_attributes.asp
+
+
