@@ -32,11 +32,13 @@ public class InformacoesUsuarioPageObjectsTest{
 			@Param(name="senha")String senha,
 			@Param(name="tipo")String tipo,
 			@Param(name="contato")String contato,
-			@Param(name="mensagem")String mensagemEsperada) {
+			@Param(name="mensagem")String mensagemEsperada
+			) {
+		
 		String textoToast = new LoginPage(navegador)
 				.clicarSignIn()
 				.fazerLogin(login, senha)
-				.clicarSignIn()
+				.clicarMe()
 				.clicarAbaMoreDataAboutYou()
 				.clicarBotaoAddMoreDataAboutYou()
 				.adicionarContato("tipo", "contato")

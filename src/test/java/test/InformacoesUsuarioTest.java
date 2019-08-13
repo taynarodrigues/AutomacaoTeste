@@ -99,13 +99,13 @@ public class InformacoesUsuarioTest {
 		//Validar que a mensagem apresentada foi Rest in peace, dear phone!
 		WebElement mensagemPop = navegador.findElement(By.id("toast-container"));
 		String mensagem = mensagemPop.getText();
-		assertEquals("Rest in peace, dear phone!", mensagem);
+		assertEquals(mensagem, mensagem);
 		
 		String screenshotArquivo = "/home/sys7/Downloads/AutomacaoTeste/test-report/" + Generator.dataHoraParaArquivo() + test.getMethodName() + ".png";
 		Screenshot.tirar(navegador, screenshotArquivo );
 		
 		//Aguardar até 10 segundos para que a janela desapareça
-		WebDriverWait aguardar = new WebDriverWait(navegador,50);
+		WebDriverWait aguardar = new WebDriverWait(navegador,10);
 		aguardar.until(ExpectedConditions.stalenessOf(mensagemPop));
 		
 		//Clicar no link com texto "Logout"

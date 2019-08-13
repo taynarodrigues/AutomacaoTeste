@@ -1,3 +1,3 @@
-InformacoesUsuarioPageObjectsTest,login,senha,tipo,contato,mensagem
+testAdicionarUmaInformacaoAdicionalDoUsuario,login,senha,tipo,contato,mensagem
 "",julio001,123456,Phone,+5592992825179,Your contact has been added!
 "",julio001,123456,E-mail,taynajesus@hotmail.com,Your contact has been added!
