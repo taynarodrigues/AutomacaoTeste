@@ -1,0 +1,150 @@
+Introdução ao Selenium WebDriver - Apêndice
+
+
+Neste teste vimos que é necessário ter métodos anotados com 
+@Test para que sejam interpretados como um teste válido ao clicar em "executar"
+
+Dentre as asserções mais comuns estão:
+
+**assertEquals(String valorEsperado, String valorAtual, String mensagemErro) 
+
+ -> Validar se o valorAtual é igual ao valorEsperado, caso não sejam, a mensagermErro é apresentada.
+
+**assertTrue(boolean condicaoAtual, String mensagemErro) 
+
+ -> Validar se a condicaoAtual é verdadeira, caso não seja, a mensagermErro é apresentada.
+
+**Seu navegador não abriu uma janela maximizada?
+ -> use o comando a seguir logo abaixo da instanciação da classe ChromeDriver:
+
+                navegador.manage().window().maximize(); 
+
+Ou, se está num MAC OS X, como eu, use o comando abaixo:
+
+navegador.manage().window().setSize(new Dimension(1280, 800)); 
+
+Lembrando que o primeiro parâmetro (1280) representa a largura e o segundo (800) representa a altura da janela do navegador.
+
+Codificando o teste com o Selenium WebDriver- Apêndice
+
+*Método findElement
+-> ele retorna um objeto do tipo WebElement que representa um objeto qualquer contido na página, por exemplo,
+um botão, um campo, uma caixa de textos, etc.
+
+	Alguns dos métodos mais utilizados em um WebElement são:
+
+click() 
+ -> Para clicar em um determinado elemento.
+
+sendKeys(String texto) 
+  -> Para atribuir um texto a um elemento, esse método pode ser mesclado com o uso da classe Keys, que possibilita, por exemplo, o digitar de teclas especiais como Shift, Enter, Backspace, etc.
+
+
+
+getText() 
+  -> Retorna o texto contido entre o abrir e fechar da tag. No código <a id="mensagem">Este é meu texto</a>, o getText() retornaria "Este é meu texto".
+
+clear() 
+  -> Limpa um campo que já possui um valor default.
+
+getAttribute(String atributo) 
+  -> Retorna o texto contido em um atributo. No código <a id="mensagem">Este é meu texto</a>, o getAttribute("id") retornaria "mensagem".
+
+
+   **Usando @Before e @After do JUnit - Apêndice
+
+  Além das anotações @Test, @Before e @After ainda há outras três anotações, vejamos no próximo parágrafo.
+
+@BeforeClass
+ -> Método público, sem retorno e estático usado para executar comandos antes da execução do primeiro teste contido no projeto.
+
+@AfterClass
+ -> Método público, sem retorno e estático usado para executar comandos depois da execução do último teste contido no projeto.
+
+@Ignore(String motivo)
+ -> Permite que testes sejam ignorados.
+
+	Lidando com Combo boxes e toast messages - Apêndice
+
+*sobre ter apenas asserções no fim do código, isso é uma prática herdada do Padrão AAA, que refere-se a Arrange, Act e Assert, respectivamente, Preparação do teste, Ação e Asserções, ou seja, validações. O padrão AAA foi herdado do teste de unidade.
+
+
+	Esperas explícitas, janelas JS e identificadores XPath avançados - Apêndice
+
+*Todos os métodos de teste precisam ter a anotação @Test e serem públicos e sem retorno, ou seja, void.
+
+XPath é um completo mecanismo de pesquisa em arquivos baseados em XML, além dos comando básicos de pesquisa, há uma série de métodos e axes que permitem navegar em elementos que estão ao redor de um determinado elemento. 
+Veja abaixo uma lista com todos os axes disponíveis no XPath:
+
+https://www.w3schools.com/xml/xpath_axes.asp
+
+A classe ExpectedConditions
+ -> Elas nos ajudam a criar formas de aguardar que certos eventos aconteçam, como por exemplos que um determinado seja removido do DOM
+Abaixo está um link com todas as estratégias de espera, ou seja, métodos da classe ExpectedConditions:
+
+https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/support/ui/ExpectedConditions.html
+
+As estratégias mais utilizadas são:
+
+alertIsPresent()  
+
+Aguarda até que uma mensagem Javascript seja apresentada.
+
+elementToBeClickable(By localizador) 
+
+Aguarda até que um elemento esteja pronto para receber um clique, por exemplo, ele poderia ficar desabilitado durante algum período e então teríamos de esperar até que ficasse habilitado novamente.
+
+visibilityOfElementLocated(By localizador) 
+
+Aguarda até que as propriedades CSS display e hidden possuam valores que possibilitam a visualização do elemento pelo usuário.
+
+
+
+		Testes dirigidos a dados (Data-driven testing) - Apêndice
+
+ -> Data-Driven Testing é uma estratégia de testes que visa impedir a duplicação de scripts quando apenas os dados de entrada ou saída são diferentes. A idéia, como vimos no vídeo, é inputar parâmetros de entrada e saída nos métodos de teste e fazer com que os testes consumam um arquivo externo com os dados que serão utilizados nos testes. Quanto mais linhas o arquivo externo tiver, mais testes são executados.
+
+ -> Além do formato CSV, é possível trabalhar com XLS (Excel) ou mesmo JSON como DataLoader. 
+
+ -> O Easy Test permite a adição de dados de mais de um teste no arquivo de base de dados, vejamos como seria:
+
+# Arquivo: ClasseDeTesteComDoisMetodos.csv
+
+meuPrimeiroMetodo,nome,idade,mensagem
+                 ,Julio,31,Sucesso
+meuSegundoMetodo,salario,mensagem
+                ,1000,Sucesso
+
+    	   Page objects (Parte 1) - Apêndice
+
+Segundo Martin Fowler, a regra de ouro do Page Objects é permitir que todo software possa fazer qualquer interação que um humano faria perante ao software além de ver tudo o que ele veria.
+
+Lembretes:
+
+ -> Ao adicionar um método em uma página devemos saber qual é a próxima page para ele
+ -> Toda page precisa ter uma construtor que alimente a propriedade navegador, do tipo WebDriver
+ -> A classe inicial deve ser instanciada e deve ser usada dentro de um teste do JUnit
+
+    	 Page objects (Parte 2) - Apêndice
+
+Lembretes: 
+
+Use “Alt + Enter” para importar classes no Windows e “Option + Enter” no Mac OS X
+
+
+	Page objects (Parte 3) - Apêndice
+
+ -> Asserções em Page Objects tem um debate muito constante, a pergunta é: faço asserções dentro da página ou coloco-as dentro dos métodos de uma classe da Page, chamado "validarAlgo" por exemplo.
+
+ -> Segundo Martin Fowler, devemos deixar asserções dentro dos testes e não dentro das pages, para evitar duplicações e também para dar responsabilidade única às páginas:
+
+ ... E contínua dando seu feedback quando a estruturação deste recurso.
+
+
+
+
+
+
+
+
+
