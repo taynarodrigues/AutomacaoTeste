@@ -1,0 +1,219 @@
+Automação de Testes com Selenium WebDriver em Java
+
+Ter métodos anotados com @Test para que seja interpretados como um teste válido ao clicar em "executar".
+
+*Métodos da classe Assert
+-> Do JUnit para validar valores obtidos dutantes os testes dentre as asserções mais comuns estão:
+
+	assertEquals(String valorEsperado, String valorAtual, String mensagemErro)
+
+Validar se o valorAtual é igual ao valorEsperado, caso não sejam, a mensageErro é apresentada.
+	
+	assertTrue(boolean condicaoAtual, String mensagemErro) 
+
+Validar se a condicaoAtual é verdadeira, caso não seja, a mensagemErro é apresentada.
+
+   **JANELA MAXIMIZADA
+Use o comando da instanciação da classe ChromeDriver:
+	navegador.manage().window().maximize();
+
+Ou, se está num MAC OS X, como eu, use o comando abaixo:
+
+navegador.manage().window().setSize(new Dimension(1280, 800)); 
+
+Lembrando que o primeiro parâmetro (1280) representa a largura e o segundo (800) representa a altura da janela do navegador.
+
+Codificando o teste com o Selenium WebDriver- Apêndice
+
+*Método findElement
+-> ele retorna um objeto do tipo WebElement que representa um objeto qualquer contido na página, por exemplo,
+um botão, um campo, uma caixa de textos, etc.
+
+	Alguns dos métodos mais utilizados em um WebElement são:
+
+click() 
+ -> Para clicar em um determinado elemento.
+
+sendKeys(String texto) 
+  -> Para atribuir um texto a um elemento, esse método pode ser mesclado com o uso da classe Keys, que possibilita, por exemplo, o digitar de teclas especiais como Shift, Enter, Backspace, etc.
+
+
+
+getText() 
+  -> Retorna o texto contido entre o abrir e fechar da tag. No código <a id="mensagem">Este é meu texto</a>, o getText() retornaria "Este é meu texto".
+
+clear() 
+  -> Limpa um campo que já possui um valor default.
+
+getAttribute(String atributo) 
+  -> Retorna o texto contido em um atributo. No código <a id="mensagem">Este é meu texto</a>, o getAttribute("id") retornaria "mensagem".
+
+
+   **Usando @Before e @After do JUnit - Apêndice
+
+  Além das anotações @Test, @Before e @After ainda há outras três anotações, vejamos no próximo parágrafo.
+
+@BeforeClass
+ -> Método público, sem retorno e estático usado para executar comandos antes da execução do primeiro teste contido no projeto.
+
+@AfterClass
+ -> Método público, sem retorno e estático usado para executar comandos depois da execução do último teste contido no projeto.
+
+@Ignore(String motivo)
+ -> Permite que testes sejam ignorados.
+
+	Lidando com Combo boxes e toast messages - Apêndice
+
+*sobre ter apenas asserções no fim do código, isso é uma prática herdada do Padrão AAA, que refere-se a Arrange, Act e Assert, respectivamente, Preparação do teste, Ação e Asserções, ou seja, validações. O padrão AAA foi herdado do teste de unidade, veja mais no link abaixo:
+
+https://www.typemock.com/unit-test-patterns-for-net#aaa
+
+*A necessidade de uso da classe Select, para ter acesso a métodos que não foram disponibilizados nativamente na interface WebElement. 
+Veja abaixo a relação completa de métodos disponíveis para interação com comboboxes:
+
+http://seleniumhq.github.io/selenium/docs/api/java/index.html
+
+	Esperas explícitas, janelas JS e identificadores XPath avançados - Apêndice
+*Todos os métodos de teste precisam ter a anotação @Test e serem públicos e sem retorno, ou seja, void.
+
+XPath é um completo mecanismo de pesquisa em arquivos baseados em XML, além dos comando básicos de pesquisa, há uma série de métodos e axes que permitem navegar em elementos que estão ao redor de um determinado elemento. 
+Veja abaixo uma lista com todos os axes disponíveis no XPath:
+
+https://www.w3schools.com/xml/xpath_axes.asp
+
+A classe ExpectedConditions
+ -> Elas nos ajudam a criar formas de aguardar que certos eventos aconteçam, como por exemplos que um determinado seja removido do DOM
+Abaixo está um link com todas as estratégias de espera, ou seja, métodos da classe ExpectedConditions:
+
+https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/support/ui/ExpectedConditions.html
+
+As estratégias mais utilizadas são:
+
+alertIsPresent()  
+
+Aguarda até que uma mensagem Javascript seja apresentada.
+
+elementToBeClickable(By localizador) 
+
+Aguarda até que um elemento esteja pronto para receber um clique, por exemplo, ele poderia ficar desabilitado durante algum período e então teríamos de esperar até que ficasse habilitado novamente.
+
+visibilityOfElementLocated(By localizador) 
+
+Aguarda até que as propriedades CSS display e hidden possuam valores que possibilitam a visualização do elemento pelo usuário.
+		Gerando evidências de teste com screenshots - Apêndice
+
+Quando escrito de forma correta, um teste, mesmo sem evidências gráficas, torna-se muito didático e informativo. Em alguns contextos, como por exemplo, em empresas que necessitam de alto controle sobre os testes que são executados, faz-se necessário o uso de screenshots durante a execução do mesmo. Evidências em casos como esse são extremamente necessários.
+
+Nesse vídeo criamos uma classe com Generators, bem, nessa classe podemos colocar quantos geradores forem necessários, apenas para facilitar nosso trabalho. Logo, um dos geradores que faz muito sentido estar no seu projeto é o criação e CNPJ da empresa:
+
+https://github.com/muriloferreira/utilities/blob/master/GeraCpfCnpj.java
+
+Try e Catch são comandos para tratar trechos de código. Basicamente, sua estrutura diz o seguinte:
+
+try {
+   // Linha 2
+} catch (Exception e) {
+  // Linha 4
+} finally {
+  // Linha 6
+}
+Se o problema na Linha 2 ter uma falha, veremos que a Linha 4 será executada. Se caso a Linha 2 tiver sucesso, a linha 4 não será executada. Em ambos os casos, a linha 6 é apresentada.
+
+Testes dirigidos a dados (Data-driven testing) - Apêndice
+Data-Driven Testing é uma estratégia de testes que visa impedir a duplicação de scripts quando apenas os dados de entrada ou saída são diferentes. A idéia, como vimos no vídeo, é inputar parâmetros de entrada e saída nos métodos de teste e fazer com que os testes consumam um arquivo externo com os dados que serão utilizados nos testes. Quanto mais linhas o arquivo externo tiver, mais testes são executados.
+
+Além do formato CSV, é possível trabalhar com XLS (Excel) ou mesmo JSON como DataLoader. Abaixo segue os links com os artigos que apresentam como usar esses outros DataLoaders:
+
+https://github.com/EaseTech/easytest-core/wiki/Passing-JSON-Object-in-test-data
+https://github.com/EaseTech/easytest/wiki/EasyTest-:-Loading-Data-using-Excel
+O Easy Test permite a adição de dados de mais de um teste no arquivo de base de dados, vejamos como seria:
+
+# Arquivo: ClasseDeTesteComDoisMetodos.csv
+
+meuPrimeiroMetodo,nome,idade,mensagem
+                 ,Julio,31,Sucesso
+meuSegundoMetodo,salario,mensagem
+                ,1000,Sucesso
+
+Page objects (Parte 1) - Apêndice
+Segundo Martin Fowler, a regra de ouro do Page Objects é permitir que todo software possa fazer qualquer interação que um humano faria perante ao software além de ver tudo o que ele veria.
+
+https://martinfowler.com/bliki/PageObject.html
+
+Lembretes:
+
+Ao adicionar um método em uma página devemos saber qual é a próxima page para ele
+Toda page precisa ter uma construtor que alimente a propriedade navegador, do tipo WebDriver
+A classe inicial deve ser instanciada e deve ser usada dentro de um teste do JUnit
+
+Page objects (Parte 2) - Apêndice
+Errata:
+
+Ao invés de return new SecretaPage(navegador) seria mais apropriado usar return clicarSignIn() uma vez que ele já retorna um new SecretaPage
+Poderíamos também fazer um return digitarLogin(“julio0001”).digitarSenha(“123456”) .clicarSignIn();
+Há vários conceitos de Java e orientação a objeto nesse vídeo, entre eles, conceitos, sintaxe e formas de pensar orientado a objetos. Veja abaixo um vídeo que apresenta os principais fundamente em teste para começar a testes:
+
+https://youtu.be/YPTlx9vbikM
+
+Lembretes: 
+
+Use “Alt + Enter” para importar classes no Windows e “Option + Enter” no Mac OS X
+
+Page objects (Parte 2) - Apêndice
+Errata:
+
+Ao invés de return new SecretaPage(navegador) seria mais apropriado usar return clicarSignIn() uma vez que ele já retorna um new SecretaPage
+Poderíamos também fazer um return digitarLogin(“julio0001”).digitarSenha(“123456”) .clicarSignIn();
+Há vários conceitos de Java e orientação a objeto nesse vídeo, entre eles, conceitos, sintaxe e formas de pensar orientado a objetos. Veja abaixo um vídeo que apresenta os principais fundamente em teste para começar a testes:
+
+https://youtu.be/YPTlx9vbikM
+
+Lembretes: 
+
+Use “Alt + Enter” para importar classes no Windows e “Option + Enter” no Mac OS X
+
+Page objects (Parte 3) - Apêndice
+Asserções em Page Objects tem um debate muito constante, a pergunta é: faço asserções dentro da página ou coloco-as dentro dos métodos de uma classe da Page, chamado "validarAlgo" por exemplo.
+
+Segundo Martin Fowler, devemos deixar asserções dentro dos testes e não dentro das pages, para evitar duplicações e também para dar responsabilidade única às páginas:
+
+"There are differences of opinion on whether page objects should include assertions themselves, or just provide data for test scripts to do the assertions. Advocates of including assertions in page objects say that this helps avoid duplication of assertions in test scripts, makes it easier to provide better error messages, and supports a more TellDontAsk style API. Advocates of assertion-free page objects say that including assertions mixes the responsibilities of providing access to page data with assertion logic, and leads to a bloated page object."
+
+E contínua dando seu feedback quando a estruturação deste recurso.
+
+Executando testes na nuvem (Browserstack) - Apêndice
+Errata:
+
+Altere o nome da constante URL (linha 11 e 37) para URLBrowserStack, assim você não terá o problema que ocorreu comigo durante o vídeo no minuto 06:4
+Não se esqueça de descimentar o comando navegador.quit(), caso contrário ficará preso na sessão e como há apenas 2 sessões disponíveis durante o trial do BrowserStack, ficará sem executar testes.
+Crie sua conta no BrowserStack no link abaixo
+
+https://www.browserstack.com/users/sign_up
+
+Acesso à documentação Java no BrowserStack 
+
+https://www.browserstack.com/automate/java
+
+Saucelabs é um dos principais concorrentes do BrowserStack: 
+
+https://saucelabs.com/
+
+Executando testes via linha de comando - Apêndice
+Download do Maven 
+
+https://maven.apache.org/download.cgi
+
+Variáveis de ambiente no Windows, Mac OS X ou Linux 
+
+https://www.java.com/pt_BR/download/help/path.xml
+
+Vídeos interessantes e Projeto no Github
+Aprenda a como aumentar a cobertura de testes automatizados exponencialmente:
+
+https://www.youtube.com/watch?v=wRdJ6LvUVTA
+
+Quer ter acesso ao código que criei durante o curso? Baixe-o no Github:
+
+https://github.com/juliointest/curso-webdriver-java
+
+
